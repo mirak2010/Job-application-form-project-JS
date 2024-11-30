@@ -8,7 +8,7 @@ body {
     
 }
 
-.form-container {
+.form-container{
     margin-top: 140px;
     background-color: #ffffff;
     padding: 20px 40px;
@@ -17,7 +17,7 @@ body {
     width: 100%;
     max-width: 500px;
     position: fixed;
-    
+   animation: fadeIn 2s ease-in-out;
 }
 
 
@@ -64,5 +64,14 @@ button:hover {
     height: 100hv;
     margin-left: 10px;
     position: fixed;
-
+    animation: fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes wave {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(20deg); }
+    100% { transform: rotate(0deg); }
 }
