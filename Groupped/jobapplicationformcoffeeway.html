@@ -1,42 +1,160 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-   
-    <title>подача заявки на работу в Coffee WAY</title>
-    
-    <link type="text/css"  rel="stylesheet" href="jobapp.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подача заявки на работу в COFFEE WAY</title>
     <link rel="icon" href="resized_logo-transformed.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            
+        }
+
+        .form-container {
+            margin-top: 150px;
+            background-color: #ffffff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            animation: fadeIn 2s ease-in-out;
+
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            
+        }
+
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea, button {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #460606;
+            border-radius: 4px;
+            width: 95%;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        button {
+            background-color: #350404;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            width: 465px;
+        }
+
+        button:hover {
+            background-color: #880202;
+        }
+
+        #logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 769px;
+            margin-left: 10px;
+            position: fixed;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Loading Button Styles */
+        .loading-btn {
+            position: relative;
+            background-color: #350404;
+            color: white;
+            font-size: 16px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 465px;
+            height: 50px;
+            transition: background-color 0.3s;
+        }
+
+        .loading-btn .spinner {
+            border: 3px solid #f3f3f3; /* Light grey */
+            border-top: 3px solid #9e0303; 
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            visibility: hidden; /* Hide spinner by default */ 
+            margin-left: 3px;
+        }
+
+        .loading-btn.loading .spinner {
+            visibility: visible; /* Show spinner when loading */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
 </head>
 <body>
-    <img src="resized_logo.png" alt="The image isn't available" width="139px" height="139px" id="logo" >
-    <div class="form-container" >
-    <fieldset>
-        <h2>Заполните анкету для подачи резюме:</h2>
-        <hr>
-        <form id="myForm" action="https://getform.io/f/agddvepb" method="POST" enctype="multipart/form-data" onsubmit="handleSubmit(event)" >
-        <label for="firstname">Имя:</label>
-        
-        <input type="text" id="firstname" name="firstname" required><br>
-        <label for="lastname">Фамилия:</label>
-        <input type="text" id="lastname" name="lastname" required><br>
-        <label for="phonenumber">Номер Телефона:</label>
-        <input type="tel" id="phonenumber" name="phonenumber" pattern="\+998[0-9]{2}[0-9]{3}[0-9]{2}[0-9]{2}" 
-        placeholder="+998XXXXXXXXX"  required><br>
-        <label for="position">Выберите вакансию:</label>
-        <select id="position" name="position" required>
-        <option value="" disabled selected>Выберите один из вариантов</option>
-        <option value="barista">Бариста</option>
-        <option value="manager">Управляющий</option>
-        </select><br>
-        <label for="resume">Резюме</label>
-        <input type="file" id="resume" name="file" accept=".pdf, .doc, .docx"><br>
-        <label for="startdate">Дата возможности начало работы:</label>
-        <input type="date" id="startdate" name="startdate" required>
-        <br>
-        <button type="submit">Отправить</button>
-    </form>
- </fieldset>
-</div>
+    <img src="resized_logo-transformed.png" alt="The image isn't available" width="139px" height="139px" id="logo">
+    <div class="form-container">
+        <fieldset>
+            <h2>Заполните анкету для подачи резюме:</h2>
+            <hr>
+            <form id="myForm" action="https://getform.io/f/agddvepb" method="POST" enctype="multipart/form-data">
+                <label for="firstname">Имя:</label>
+                <input type="text" id="firstname" name="firstname" required><br>
+
+                <label for="lastname">Фамилия:</label>
+                <input type="text" id="lastname" name="lastname" required><br>
+
+                <label for="phonenumber">Номер Телефона:</label>
+                <input type="tel" id="phonenumber" name="phonenumber" pattern="\+998[0-9]{2}[0-9]{3}[0-9]{2}[0-9]{2}" placeholder="+998XXXXXXXXX" required><br>
+
+                <label for="position">Выберите вакансию:</label>
+                <select id="position" name="position" required>
+                    <option value="" disabled selected>Выберите один из вариантов</option>
+                    <option value="barista">Бариста</option>
+                </select><br>
+
+                <label for="resume">Резюме</label>
+                <input type="file" id="resume" name="file" accept=".pdf, .doc, .docx"><br>
+
+                <label for="startdate">Дата возможности начало работы:</label>
+                <input type="date" id="startdate" name="startdate" required><br>
+
+                <button type="submit" id="submitButton" class="loading-btn">
+                    ОТПРАВИТЬ!
+                    <div class="spinner"></div>
+                </button>
+            </form>
+        </fieldset>
+    </div>
+
 <script src="jobapp.js"></script>
 
 
