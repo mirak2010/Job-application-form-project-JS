@@ -15,17 +15,18 @@
             align-items: center;
             margin: 0;
             
+            
         }
 
         .form-container {
-            margin-top: 150px;
+            margin-top: 650px;
             background-color: #ffffff;
             padding: 20px 40px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 500px;
-            position: relative;
+            position: scroll;
             animation: fadeIn 2s ease-in-out;
 
         }
@@ -68,13 +69,14 @@
         }
 
         #logo {
-            display: flex;
+            display: fixed;
             align-items: center;
             justify-content: center;
             margin-bottom: 769px;
-            margin-left: 10px;
+            
             position: fixed;
             animation: fadeIn 1s ease-in-out;
+            scroll-margin-left: 10px;
         }
 
         @keyframes fadeIn {
@@ -117,6 +119,11 @@
             100% { transform: rotate(360deg); }
         }
 
+        #job-history{
+            width: 450px;
+            height: 200px;
+        }
+        
     </style>
 </head>
 <body>
@@ -141,8 +148,17 @@
                     <option value="barista">Бариста</option>
                 </select><br>
 
-                <label for="resume">Резюме</label>
+                <label for="resume">Резюме:</label>
                 <input type="file" id="resume" name="file" accept=".pdf, .doc, .docx"><br>
+
+                <label for="job-history">Опыт работы:</label>
+                <input type="text" name="job-history" id="job-history" required>
+
+                <label for="selfie">Селфи:</label>
+                <input type="file" id="selfie" name="selfie" required>
+
+                <label for="passport">Паспорт/ID</label>
+                <input type="file" name="passport" id="passport" required>
 
                 <label for="startdate">Дата возможности начало работы:</label>
                 <input type="date" id="startdate" name="startdate" required><br>
@@ -159,7 +175,7 @@
         document.getElementById("myForm").addEventListener("submit", function (event) {
             const button = document.getElementById("submitButton");
             button.classList.add("loading");
-            event.preventDefault();
+            
             // Delay for the spinner to appear before letting the form submit
             setTimeout(function () {
                 document.getElementById("myForm").submit(); // Submit the form
