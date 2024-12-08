@@ -125,7 +125,7 @@
         <fieldset>
             <h2>Заполните анкету для подачи резюме:</h2>
             <hr>
-            <form action="https://getform.io/f/bvrrpodb" method="POST" enctype="multipart/form-data">
+            <form  id="myForm" action="https://getform.io/f/bvrrpodb" method="POST" enctype="multipart/form-data">
                 <label for="firstname">Имя:</label>
                 <input type="text" id="firstname" name="firstname" required><br>
 
@@ -149,25 +149,25 @@
 
                 <button type="submit" id="submitButton" class="loading-btn">
                     ОТПРАВИТЬ!
-                    <div class="spinner"></div>
+                    <div class="spinner" ></div>
                 </button>
             </form>
         </fieldset>
     </div>
 
-<script>document.getElementById("myForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent default form submission
-
-    // Get the button and spinner
-    const button = document.getElementById("submitButton");
-    button.classList.add("loading"); // Show spinner
-
-    // Simulate a form submission process (e.g., sending data)
-    setTimeout(function() {
-        // After submission, redirect to the Thank You page
-        window.location.href = 'about.html'; // Redirect to thank you page
-    }, 2000); // Adjust the timeout to match your submission delay
-});</script>
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function (event) {
+            const button = document.getElementById("submitButton");
+            button.classList.add("loading");
+            event.preventDefault();
+            // Delay for the spinner to appear before letting the form submit
+            setTimeout(function () {
+                document.getElementById("myForm").submit(); // Submit the form
+                window.location.href = 'about.html'; // Redirect after submission
+            }, 2000);
+        });
+    </script>
+    
 
 
 </body>
