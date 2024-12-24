@@ -14,27 +14,31 @@
             justify-content: center;
             align-items: center;
             margin: 0;
-            
-            
         }
 
         .form-container {
-            margin-top: 650px;
+            margin-top: 660px; /* Adjusted space for the logo */
             background-color: #ffffff;
             padding: 20px 40px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 500px;
-            position: scroll;
+            position: relative;
             animation: fadeIn 2s ease-in-out;
-
         }
 
         form {
             display: flex;
             flex-direction: column;
-            
+        }
+
+        fieldset {
+            border: 1px solid #460606;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 0;
+            width: 100%;
         }
 
         label {
@@ -43,12 +47,13 @@
             font-weight: bold;
         }
 
-        input, textarea, button {
+        input, textarea, button, select {
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #460606;
             border-radius: 4px;
-            width: 95%;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         textarea {
@@ -61,7 +66,7 @@
             border: none;
             cursor: pointer;
             font-size: 16px;
-            width: 465px;
+            width: 100%;
         }
 
         button:hover {
@@ -73,10 +78,10 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 769px;
-            
             position: fixed;
             animation: fadeIn 1s ease-in-out;
-            scroll-margin-left: 10px;
+            scroll-margin-left: 20px;
+            margin-left: 30px;
         }
 
         @keyframes fadeIn {
@@ -84,7 +89,6 @@
             to { opacity: 1; }
         }
 
-        /* Loading Button Styles */
         .loading-btn {
             position: relative;
             background-color: #350404;
@@ -94,24 +98,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 465px;
+            width: 100%;
             height: 50px;
             transition: background-color 0.3s;
         }
 
         .loading-btn .spinner {
-            border: 3px solid #f3f3f3; /* Light grey */
-            border-top: 3px solid #9e0303; 
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #9e0303;
             border-radius: 50%;
             width: 20px;
             height: 20px;
             animation: spin 1s linear infinite;
-            visibility: hidden; /* Hide spinner by default */ 
+            visibility: hidden;
             margin-left: 3px;
         }
 
         .loading-btn.loading .spinner {
-            visibility: visible; /* Show spinner when loading */
+            visibility: visible;
         }
 
         @keyframes spin {
@@ -119,11 +123,10 @@
             100% { transform: rotate(360deg); }
         }
 
-        #job-history{
-            width: 450px;
+        #job-history {
+            width: 100%;
             height: 200px;
         }
-        
     </style>
 </head>
 <body>
@@ -132,7 +135,7 @@
         <fieldset>
             <h2>Заполните анкету для подачи резюме:</h2>
             <hr>
-            <form  id="myForm" action="https://getform.io/f/bvrrpodb" method="POST" enctype="multipart/form-data">
+            <form id="myForm" action="https://getform.io/f/bvrrpodb" method="POST" enctype="multipart/form-data">
                 <label for="firstname">Имя:</label>
                 <input type="text" id="firstname" name="firstname" required><br>
 
@@ -152,20 +155,20 @@
                 <input type="file" id="resume" name="file" accept=".pdf, .doc, .docx"><br>
 
                 <label for="job-history">Опыт работы:</label>
-                <input type="text" name="job-history" id="job-history" required>
+                <input type="text" name="job-history" id="job-history" required><br>
 
                 <label for="selfie">Селфи:</label>
-                <input type="file" id="selfie" name="selfie" required>
+                <input type="file" id="selfie" name="selfie" required><br>
 
                 <label for="passport">Паспорт/ID</label>
-                <input type="file" name="passport" id="passport" required>
+                <input type="file" name="passport" id="passport" required><br>
 
                 <label for="startdate">Дата возможности начало работы:</label>
                 <input type="date" id="startdate" name="startdate" required><br>
 
                 <button type="submit" id="submitButton" class="loading-btn">
                     ОТПРАВИТЬ!
-                    <div class="spinner" ></div>
+                    <div class="spinner"></div>
                 </button>
             </form>
         </fieldset>
@@ -183,8 +186,10 @@
             }, 2000);
         });
     </script>
-    
-
-
 </body>
 </html>
+
+
+
+
+
