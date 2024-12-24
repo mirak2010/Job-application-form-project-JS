@@ -54,10 +54,16 @@
             border-radius: 4px;
             width: 100%;
             box-sizing: border-box;
+            text-align: left; /* Ensures text starts from the left */
+        }
+
+        input {
+            padding-left: 10px; /* Prevent text from being pushed to the center */
         }
 
         textarea {
             resize: none;
+            text-align: left; /* Ensure text starts from the left */
         }
 
         button {
@@ -127,6 +133,17 @@
             width: 100%;
             height: 200px;
         }
+       
+input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #460606;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;  /* Ensures text starts from the left */
+    padding-left: 10px; /* Ensures text isn't pushed to the center due to padding */
+}
     </style>
 </head>
 <body>
@@ -135,7 +152,8 @@
         <fieldset>
             <h2>Заполните анкету для подачи резюме:</h2>
             <hr>
-            <form id="myForm" action="https://getform.io/f/bvrrpodb" method="POST" enctype="multipart/form-data">
+            <form id="myForm" action="https://getform.io/f/bvrrpodb" method="POST" enctype="multipart/form-data" data-getform-success-redirect="about.html">
+
                 <label for="firstname">Имя:</label>
                 <input type="text" id="firstname" name="firstname" required><br>
 
@@ -176,15 +194,30 @@
 
     <script>
         document.getElementById("myForm").addEventListener("submit", function (event) {
-            const button = document.getElementById("submitButton");
-            button.classList.add("loading");
-            
-            // Delay for the spinner to appear before letting the form submit
-            setTimeout(function () {
-                document.getElementById("myForm").submit(); // Submit the form
-                window.location.href = 'about.html'; // Redirect after submission
-            }, 2000);
-        });
+    const button = document.getElementById("submitButton");
+    button.classList.add("loading");
+
+    // Optional: Use the Getform success handler to redirect
+    event.preventDefault(); // Prevent default form submission to handle it manually
+
+    fetch('https://getform.io/f/bvrrpodb', {
+        method: 'POST',
+        body: new FormData(event.target),
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = 'about.html'; // Redirect to thank-you page
+        } else {
+            alert('There was an error with your submission.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error with your submission.');
+    });
+});
+
+
     </script>
 </body>
 </html>
